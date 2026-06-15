@@ -9,6 +9,10 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
 
     <style>
       :root {
@@ -74,6 +78,7 @@
         align-items: center;
         padding: 12px 30px;
         z-index: 1000;
+        transition: all 0.4s ease;
       }
       .logo-area {
         display: flex;
@@ -82,6 +87,7 @@
         font-weight: 700;
         letter-spacing: 0.5px;
         font-size: 15px;
+        z-index: 1010;
       }
       .logo-badge {
         background: linear-gradient(135deg, var(--neon1), var(--neon2));
@@ -136,13 +142,25 @@
         border-radius: 30px;
         background: rgba(255, 255, 255, 0.02);
         transition: 0.3s;
+        z-index: 1010;
       }
       .header-cta:hover {
         border-color: var(--neon2);
         box-shadow: 0 0 15px rgba(189, 0, 255, 0.2);
       }
 
-      /* HERO SECTION (Unang Section: Pangalan + 3D Abstract Canvas) */
+      /* HAMBURGER MENU BUTTON */
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 1010;
+      }
+
+      /* HERO SECTION */
       .hero {
         min-height: 100vh;
         display: grid;
@@ -176,7 +194,7 @@
         background: var(--muted);
       }
       .hero h1 {
-        font-size: clamp(2.8rem, 6vw, 4.8rem);
+        font-size: clamp(2.2rem, 5.5vw, 4.8rem);
         line-height: 1.05;
         font-weight: 700;
         letter-spacing: -1px;
@@ -201,6 +219,7 @@
         display: flex;
         align-items: center;
         gap: 25px;
+        flex-wrap: wrap;
       }
       .btn-primary {
         display: inline-flex;
@@ -257,6 +276,7 @@
         justify-content: center;
         align-items: center;
         height: 100%;
+        min-height: 350px;
       }
       .fluid-art-fallback {
         width: 100%;
@@ -277,7 +297,6 @@
         position: relative;
         overflow: hidden;
       }
-      /* Upang i-embed ang totoong high-end artwork asset o motion file kagaya nung nasa picture */
       .fluid-art-fallback::before {
         content: '';
         position: absolute;
@@ -328,7 +347,6 @@
         gap: 12px;
       }
 
-      /* Asymmetric Layout Blocks matching your UI Upload */
       .work-layout-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -361,7 +379,6 @@
         opacity: 0.35;
         transition: 0.5s ease;
       }
-      /* Project placeholders simulating mockups in image */
       .w1 .work-card-bg-render {
         background-image: url('analytics-dashboard.jpg');
         background-color: rgba(0, 245, 255, 0.05);
@@ -425,7 +442,6 @@
         height: 480px;
         border: 1px solid var(--border-glass);
       }
-      .about-profile-frame img,
       .about-profile-img-placeholder {
         width: 100%;
         height: 100%;
@@ -452,7 +468,7 @@
         color: var(--muted);
       }
       .about-right-content h2 {
-        font-size: clamp(24px, 4vw, 36px);
+        font-size: clamp(22px, 4vw, 36px);
         font-weight: 600;
         line-height: 1.3;
       }
@@ -523,29 +539,60 @@
         margin: 0 auto;
       }
       .contact-card h2 {
-        font-size: 32px;
+        font-size: clamp(24px, 4vw, 32px);
         margin-bottom: 15px;
       }
       .contact-card p {
         color: var(--muted);
         margin-bottom: 35px;
       }
+
+      /* ENGAGING CONTACT CHANNELS */
       .contact-channels {
         display: flex;
         justify-content: center;
-        gap: 40px;
+        gap: 20px;
         flex-wrap: wrap;
+        margin-top: 30px;
       }
-      .contact-channels a {
-        color: var(--text);
+      .contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted);
         text-decoration: none;
-        font-weight: 600;
-        font-size: 15px;
-        transition: 0.3s;
+        font-weight: 500;
+        font-size: clamp(13px, 1.2vw, 15px);
+        padding: 12px 24px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.01);
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        width: auto;
       }
-      .contact-channels a:hover {
-        color: var(--neon1);
-        text-shadow: 0 0 10px rgba(0, 245, 255, 0.4);
+      .contact-link i {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+      }
+      .contact-link:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.03);
+        transform: translateY(-3px);
+      }
+      .contact-link.email:hover {
+        border-color: var(--neon1);
+        box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);
+      }
+      .contact-link.linkedin:hover {
+        border-color: #0077b5;
+        box-shadow: 0 0 20px rgba(0, 119, 181, 0.2);
+      }
+      .contact-link.github:hover {
+        border-color: var(--neon2);
+        box-shadow: 0 0 20px rgba(189, 0, 255, 0.15);
+      }
+      .contact-link:hover i {
+        transform: scale(1.15);
       }
 
       /* FOOTER */
@@ -557,6 +604,8 @@
         align-items: center;
         color: var(--muted);
         font-size: 12px;
+        flex-wrap: wrap;
+        gap: 15px;
       }
 
       /* SOCIAL LINKS FLOATING LAYER */
@@ -598,59 +647,69 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* UPDATED ENGAGING CONTACT CHANNELS */
-      .contact-channels {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-        margin-top: 30px;
-      }
-      .contact-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px; /* Spacing sa pagitan ng icon at text */
-        color: var(--muted);
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 15px;
-        padding: 12px 24px;
-        border-radius: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.03);
-        background: rgba(255, 255, 255, 0.01);
-        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-      }
-      .contact-link i {
-        font-size: 18px;
-        transition: transform 0.3s ease;
-      }
-      /* Hover Effects para sa bawat channel */
-      .contact-link:hover {
-        color: var(--text);
-        background: rgba(255, 255, 255, 0.03);
-        transform: translateY(-3px);
-      }
-      .contact-link.email:hover {
-        border-color: var(--neon1);
-        box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);
-      }
-      .contact-link.linkedin:hover {
-        border-color: #0077b5; /* LinkedIn Blue */
-        box-shadow: 0 0 20px rgba(0, 119, 181, 0.2);
-      }
-      .contact-link.github:hover {
-        border-color: var(--neon2); /* Custom Theme Purple */
-        box-shadow: 0 0 20px rgba(189, 0, 255, 0.15);
-      }
-      .contact-link:hover i {
-        transform: scale(1.15);
-      }
-      /* RESPONSIVE LAYOUT */
+
+      /* ---------------------------------------------------------------- */
+      /* MEDIA QUERIES (RESPONSIVENESS)                 */
+      /* ---------------------------------------------------------------- */
+
+      /* LAPTOPS & TABLETS (992px and down) */
       @media (max-width: 992px) {
+        header.site-header {
+          width: 90%;
+          padding: 12px 24px;
+        }
+
+        /* Mobile Hamburger Logic Trigger */
+        .menu-toggle {
+          display: block;
+        }
+        nav.nav-links {
+          position: fixed;
+          top: 90px;
+          left: 50%;
+          transform: translateX(-50%) scale(0.95);
+          width: 100%;
+          background: rgba(7, 11, 20, 0.95);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid var(--border-glass);
+          border-radius: 25px;
+          flex-direction: column;
+          gap: 0;
+          padding: 10px;
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        nav.nav-links.open {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateX(-50%) scale(1);
+        }
+        nav.nav-links a {
+          width: 100%;
+          text-align: center;
+          padding: 15px 0;
+          font-size: 14px;
+          border-radius: 15px;
+        }
+        nav.nav-links a:hover {
+          background: rgba(255, 255, 255, 0.02);
+        }
+        nav.nav-links a::after {
+          display: none; /* Tinanggal ang dot underlay animation sa mobile interface */
+        }
+        .header-cta {
+          display: none; /* Tinago ang dual CTA sa nav para lumuwag sa tablet */
+        }
+
+        /* Hero Responsive Configuration */
         .hero {
           grid-template-columns: 1fr;
           text-align: center;
-          padding-top: 160px;
+          padding-top: 140px;
+          padding-bottom: 40px;
+          gap: 50px;
         }
         .hero-desc {
           margin: 0 auto 35px auto;
@@ -661,37 +720,120 @@
         .scroll-indicator {
           display: none;
         }
+        .hero-right {
+          min-height: auto;
+        }
+        .fluid-art-fallback {
+          height: 380px;
+          max-width: 400px;
+        }
+
+        /* Work Grid Responsive Configuration */
         .work-section {
           grid-template-columns: 1fr;
+          padding: 60px 6%;
+          gap: 40px;
         }
         .work-sticky-info {
           position: relative;
           top: 0;
+          text-align: center;
         }
+        .work-sticky-info p {
+          max-width: 500px;
+          margin: 0 auto 20px auto;
+        }
+
+        /* About Responsive Configuration */
         .about-section {
           grid-template-columns: 1fr;
+          padding: 60px 6%;
+          gap: 40px;
         }
         .about-profile-frame {
           height: 380px;
+          max-width: 400px;
+          width: 100%;
+          margin: 0 auto;
+        }
+        .about-right-content {
+          text-align: center;
+          gap: 30px;
+        }
+        .about-tag {
+          margin: 0 auto;
         }
       }
+
+      /* SMALL PHONES (600px and down) */
       @media (max-width: 600px) {
-        .work-layout-grid {
-          grid-template-columns: 1fr;
-        }
-        .work-card.tall {
-          min-height: 260px;
-        }
-        .metrics-dashboard-grid {
-          grid-template-columns: 1fr;
-        }
         header.site-header {
           width: 92%;
           padding: 10px 20px;
+          top: 15px;
         }
-        nav.nav-links {
+        .logo-area span {
+          font-size: 13px;
+        }
+        .social-dock {
+          display: none; /* Tinago ang vertical dock sa mobile para hindi makaharang sa content */
+        }
+        section {
+          padding: 60px 5%;
+        }
+
+        /* Work Cards Breakout Layout */
+        .work-layout-grid {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+        .work-card.tall {
+          min-height: 280px;
+        }
+        .work-card {
+          min-height: 240px;
+          padding: 20px;
+        }
+
+        /* Metrics Breakout Layout */
+        .metrics-dashboard-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .metric-box {
+          padding: 15px 20px;
+        }
+
+        /* Contact Details Layout */
+        .contact-section {
+          padding: 60px 4%;
+        }
+        .contact-card {
+          padding: 40px 20px;
+          border-radius: 24px;
+        }
+        .contact-channels {
+          flex-direction: column;
+          width: 100%;
+          gap: 12px;
+        }
+        .contact-link {
+          width: 100%;
+          justify-content: center;
+        }
+
+        footer {
+          flex-direction: column;
+          text-align: center;
+          padding: 30px 5%;
+        }
+      }
+
+      /* HIDE CURSOR ON TOUCH DEVICES */
+      @media (hover: none) and (pointer: coarse) {
+        .cursor {
           display: none;
-        } /* Pwede mong lagyan ng mobile menu toggler balang araw */
+        }
       }
     </style>
   </head>
@@ -710,13 +852,23 @@
         <div class="logo-badge">JMB</div>
         <span>JANSEN MARK BARIL</span>
       </div>
-      <nav class="nav-links">
+
+      <nav class="nav-links" id="navLinks">
         <a href="#hero" class="active">Home</a>
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
+
       <a href="#contact" class="header-cta">Let's Work Together +</a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation menu"
+      >
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </header>
 
     <section class="hero" id="hero">
@@ -784,7 +936,7 @@
 
           <a href="#" class="work-card w4">
             <div class="work-card-bg-render"></div>
-            <div class="project-num =">04</div>
+            <div class="project-num">04</div>
             <h3>Fintech Mobile App</h3>
             <span>UI/UX Design</span>
           </a>
@@ -880,6 +1032,29 @@
     </footer>
 
     <script>
+      // HAMBURGER TOGGLE LOGIC FOR MOBILE DEVICES
+      const menuToggle = document.getElementById('menuToggle')
+      const navLinks = document.getElementById('navLinks')
+      const toggleIcon = menuToggle.querySelector('i')
+
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open')
+        // Palitan ang icon (bars -> xmark) depende sa status ng menu
+        if (navLinks.classList.contains('open')) {
+          toggleIcon.classList.replace('fa-bars', 'fa-xmark')
+        } else {
+          toggleIcon.classList.replace('fa-xmark', 'fa-bars')
+        }
+      })
+
+      // Isara ang menu kapag may pinindot na link sa mobile layout
+      document.querySelectorAll('nav.nav-links a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open')
+          toggleIcon.classList.replace('fa-xmark', 'fa-bars')
+        })
+      })
+
       // ADVANCED MOUSE TRAIL EFFECT WITH INTERACTIVE LAGGING DAMPING
       const cursor = document.getElementById('cursor')
       let mouseX = 0,
@@ -937,7 +1112,7 @@
             }
           })
         },
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
+        { threshold: 0.05, rootMargin: '0px 0px -20px 0px' },
       )
 
       document.querySelectorAll('.reveal').forEach((element) => {

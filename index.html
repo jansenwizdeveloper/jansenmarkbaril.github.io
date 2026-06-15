@@ -598,7 +598,53 @@
         opacity: 1;
         transform: translateY(0);
       }
-
+      /* UPDATED ENGAGING CONTACT CHANNELS */
+      .contact-channels {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+      .contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px; /* Spacing sa pagitan ng icon at text */
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 15px;
+        padding: 12px 24px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.01);
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .contact-link i {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+      }
+      /* Hover Effects para sa bawat channel */
+      .contact-link:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.03);
+        transform: translateY(-3px);
+      }
+      .contact-link.email:hover {
+        border-color: var(--neon1);
+        box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);
+      }
+      .contact-link.linkedin:hover {
+        border-color: #0077b5; /* LinkedIn Blue */
+        box-shadow: 0 0 20px rgba(0, 119, 181, 0.2);
+      }
+      .contact-link.github:hover {
+        border-color: var(--neon2); /* Custom Theme Purple */
+        box-shadow: 0 0 20px rgba(189, 0, 255, 0.15);
+      }
+      .contact-link:hover i {
+        transform: scale(1.15);
+      }
       /* RESPONSIVE LAYOUT */
       @media (max-width: 992px) {
         .hero {
@@ -802,9 +848,27 @@
             Get in touch for collaborations, projects, or just to say hello.
           </p>
           <div class="contact-channels">
-            <a href="mailto:jansen@example.com">jansen@example.com</a>
-            <a href="#">linkedin.com/in/jansenbaril</a>
-            <a href="#">github.com/jansenbaril</a>
+            <a
+              href="mailto:jansenmarkbaril@gmail.com"
+              class="contact-link email"
+            >
+              <i class="fa-regular fa-envelope"></i>
+              <span>jansenmarkbaril@gmail.com</span>
+            </a>
+
+            <a href="#" class="contact-link linkedin">
+              <i class="fa-brands fa-linkedin-in"></i>
+              <span>linkedin.com/in/jansenbaril</span>
+            </a>
+
+            <a
+              href="https://github.com/jansenwizdeveloper"
+              target="_blank"
+              class="contact-link github"
+            >
+              <i class="fa-brands fa-github"></i>
+              <span>github.com/jansenwizdeveloper</span>
+            </a>
           </div>
         </div>
       </section>

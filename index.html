@@ -3,33 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Creative Portfolio | Jansen Baril</title>
+    <title>Creative Portfolio | Jansen Mark Baril</title>
 
-    <!-- Google Font -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
     <style>
       :root {
-        --bg: #070a12;
-        --panel: #0e1424;
+        --bg: #05070f;
+        --panel: #0b1120;
         --text: #e6eaf2;
-        --muted: #9aa4b2;
+        --muted: #8a99ad;
         --neon1: #00f5ff;
         --neon2: #ff3df2;
         --neon3: #7cff6b;
-        --glass: rgba(255, 255, 255, 0.06);
+        --glass: rgba(11, 17, 32, 0.7);
+        --border-glass: rgba(255, 255, 255, 0.08);
       }
 
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        scroll-behavior: smooth;
       }
+
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
         background: var(--bg);
         color: var(--text);
         overflow-x: hidden;
@@ -45,6 +47,12 @@
         pointer-events: none;
         mix-blend-mode: screen;
         z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition:
+          transform 0.1s ease-out,
+          left 0.15s ease-out,
+          top 0.15s ease-out;
+        box-shadow: 0 0 15px var(--neon1);
       }
 
       /* NAV */
@@ -52,132 +60,279 @@
         position: fixed;
         top: 0;
         width: 100%;
-        backdrop-filter: blur(14px);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         background: var(--glass);
         display: flex;
         justify-content: center;
         z-index: 1000;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid var(--border-glass);
       }
       .nav-inner {
         display: flex;
-        gap: 30px;
-        padding: 15px;
+        gap: 35px;
+        padding: 20px;
       }
       .nav-inner a {
         color: var(--muted);
         text-decoration: none;
         font-size: 14px;
+        font-weight: 500;
         transition: 0.3s;
+        letter-spacing: 0.5px;
       }
       .nav-inner a.active,
       .nav-inner a:hover {
         color: var(--neon1);
+        text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
       }
 
-      /* HERO */
+      /* HERO SECTION */
       .hero {
-        height: 100vh;
-        display: flex;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
         align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 20px;
+        gap: 60px;
+        padding: 120px 10% 60px 10%;
         position: relative;
       }
+      .hero-content {
+        text-align: left;
+      }
       .hero h1 {
-        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-size: clamp(2.5rem, 5.5vw, 4.5rem);
         line-height: 1.1;
+        font-weight: 700;
+        margin-bottom: 15px;
       }
       .hero span {
         background: linear-gradient(90deg, var(--neon1), var(--neon2));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        display: block;
+      }
+      .hero-subtitle {
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        color: var(--muted);
+        margin-bottom: 30px;
+        max-width: 600px;
+        line-height: 1.6;
+      }
+      .hero-image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .hero-profile-pic {
+        width: 100%;
+        max-width: 360px;
+        height: 450px;
+        border-radius: 24px;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 245, 255, 0.1),
+          rgba(255, 61, 242, 0.1)
+        );
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        transition: 0.5s ease;
+        /* Dito mo ilalagay yung image file mo sa background-image url */
+        background-image: url('your-picture-here.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+      .hero-profile-pic::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        padding: 2px;
+        background: linear-gradient(45deg, var(--neon1), var(--neon2));
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0.5;
+        transition: 0.5s;
+      }
+      .hero-image-container:hover .hero-profile-pic {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow:
+          0 0 30px rgba(0, 245, 255, 0.25),
+          0 0 50px rgba(255, 61, 242, 0.15);
       }
 
       /* MAGNETIC BUTTON */
       .btn {
-        margin-top: 25px;
-        padding: 14px 28px;
+        padding: 16px 32px;
         border-radius: 50px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.03);
         color: var(--text);
+        font-weight: 600;
+        font-size: 15px;
         cursor: pointer;
-        transition: 0.2s;
-        position: relative;
+        transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        text-decoration: none;
+        display: inline-block;
       }
       .btn:hover {
-        transform: scale(1.08);
+        transform: translateY(-3px);
         border-color: var(--neon1);
-        box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        background: rgba(0, 245, 255, 0.05);
+        box-shadow: 0 0 25px rgba(0, 245, 255, 0.3);
       }
 
       /* SECTIONS */
       section {
         padding: 120px 10%;
       }
-
       .section-title {
-        font-size: 2rem;
-        margin-bottom: 40px;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 50px;
+        position: relative;
+        display: inline-block;
+      }
+      .section-title::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        width: 50px;
+        height: 4px;
+        background: var(--neon1);
+        border-radius: 2px;
       }
 
       /* MASONRY GRID */
       .grid {
         column-count: 3;
-        column-gap: 20px;
+        column-gap: 24px;
       }
       .card {
         background: var(--panel);
-        margin-bottom: 20px;
-        padding: 20px;
-        border-radius: 18px;
+        margin-bottom: 24px;
+        padding: 28px;
+        border-radius: 20px;
         break-inside: avoid;
-        transition: 0.3s;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        position: relative;
+      }
+      .card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        padding: 1px;
+        background: linear-gradient(45deg, var(--neon1), var(--neon2));
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: 0.4s;
       }
       .card:hover {
-        transform: scale(1.03);
-        border-image: linear-gradient(45deg, var(--neon1), var(--neon2)) 1;
-        box-shadow: 0 0 30px rgba(0, 245, 255, 0.15);
+        transform: translateY(-8px);
+        box-shadow:
+          0 15px 35px rgba(0, 0, 0, 0.4),
+          0 0 25px rgba(0, 245, 255, 0.1);
+      }
+      .card:hover::before {
+        opacity: 1;
+      }
+      .card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+      .card p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 15px;
       }
       .card small {
-        color: var(--muted);
+        color: var(--neon1);
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: 0.5px;
       }
 
       /* FILTER BUTTONS */
       .filters {
         display: flex;
-        gap: 10px;
+        gap: 12px;
         flex-wrap: wrap;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
       }
       .filter-btn {
-        padding: 8px 14px;
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        background: transparent;
+        padding: 10px 20px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.02);
         color: var(--muted);
+        font-weight: 500;
         cursor: pointer;
+        transition: 0.3s;
       }
-      .filter-btn.active {
+      .filter-btn.active,
+      .filter-btn:hover {
         color: var(--neon1);
         border-color: var(--neon1);
+        background: rgba(0, 245, 255, 0.05);
+        box-shadow: 0 0 15px rgba(0, 245, 255, 0.15);
       }
 
-      /* ABOUT */
-      .about {
+      /* ABOUT SECTION */
+      .about-layout {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-        align-items: center;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        max-width: 800px;
       }
-      .headshot {
-        height: 350px;
-        border-radius: 20px;
-        background: linear-gradient(45deg, var(--neon1), var(--neon2));
-        opacity: 0.3;
+      .about-layout p {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+      .about-highlight {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      /* CONTACT SECTION */
+      .contact-box {
+        background: linear-gradient(
+          135deg,
+          rgba(11, 17, 32, 0.6),
+          rgba(5, 7, 15, 0.8)
+        );
+        padding: 40px;
+        border-radius: 24px;
+        border: 1px solid var(--border-glass);
+        max-width: 600px;
+      }
+      .contact-box p {
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+      .contact-box a {
+        color: var(--neon2);
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+      .contact-box a:hover {
+        color: var(--neon1);
+        text-shadow: 0 0 10px rgba(0, 245, 255, 0.4);
       }
 
       /* FOOTER */
@@ -185,15 +340,52 @@
         text-align: center;
         padding: 60px;
         color: var(--muted);
+        border-top: 1px solid var(--border-glass);
+        font-size: 14px;
+      }
+
+      /* ANIMATION STATES FOR INTERSECTION OBSERVER */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+          transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       /* RESPONSIVE */
-      @media (max-width: 900px) {
+      @media (max-width: 968px) {
+        .hero {
+          grid-template-columns: 1fr;
+          text-align: center;
+          padding-top: 140px;
+          gap: 40px;
+        }
+        .hero-content {
+          text-align: center;
+        }
+        .hero-image-container {
+          order: -1; /* Inilalagay ang picture sa itaas kapag naka-mobile format */
+        }
+        .hero-profile-pic {
+          height: 380px;
+          max-width: 300px;
+        }
+        .grid {
+          column-count: 2;
+        }
+      }
+
+      @media (max-width: 640px) {
         .grid {
           column-count: 1;
         }
-        .about {
-          grid-template-columns: 1fr;
+        section {
+          padding: 80px 6%;
         }
       }
     </style>
@@ -202,7 +394,6 @@
   <body>
     <div class="cursor" id="cursor"></div>
 
-    <!-- NAV -->
     <nav>
       <div class="nav-inner">
         <a href="#hero" class="active">Home</a>
@@ -213,48 +404,65 @@
       </div>
     </nav>
 
-    <!-- HERO -->
     <header class="hero" id="hero">
-      <div>
-        <h1>
-          Building <span>Digital Experiences</span><br />
-          That Feel Alive
-        </h1>
+      <div class="hero-content">
+        <h1>Hi, I am <span>Jansen Mark Baril</span></h1>
+        <p class="hero-subtitle">
+          Senior IT Engineer specializing in automation, infrastructure
+          architecture, and advanced AI-powered technical systems.
+        </p>
+        <a href="#work" class="btn">Explore My Work</a>
+      </div>
 
-        <button class="btn">Explore My Work</button>
+      <div class="hero-image-container">
+        <div class="hero-profile-pic"></div>
       </div>
     </header>
 
-    <!-- WORK -->
     <main>
-      <section id="work">
+      <section id="work" class="reveal">
         <h2 class="section-title">Selected Work</h2>
 
         <div class="grid">
           <div class="card" data-type="ai">
             <h3>AI Automation System</h3>
+            <p>
+              Smart contextual pipeline built with advanced APIs for corporate
+              workflow execution.
+            </p>
             <small>Python • ChatGPT • Workflow</small>
           </div>
 
           <div class="card" data-type="infra">
             <h3>Network Monitoring</h3>
+            <p>
+              Real-time corporate systems monitoring setup deployed across
+              multiple enterprise layers.
+            </p>
             <small>Zabbix • Cisco • Systems</small>
           </div>
 
           <div class="card" data-type="dev">
             <h3>Excel Automation Tool</h3>
+            <p>
+              High-speed tabular script that cleans data structures and
+              optimizes massive records automatically.
+            </p>
             <small>Python • Data Processing</small>
           </div>
 
           <div class="card" data-type="ai">
             <h3>AI Resume Generator</h3>
+            <p>
+              Dynamic platform leveraging OpenAI structural models to
+              auto-tailor professional portfolios.
+            </p>
             <small>OpenAI API • Web App</small>
           </div>
         </div>
       </section>
 
-      <!-- SERVICES -->
-      <section id="services">
+      <section id="services" class="reveal">
         <h2 class="section-title">Services</h2>
 
         <div class="filters">
@@ -267,59 +475,92 @@
         <div class="grid">
           <div class="card" data-type="ai">
             <h3>AI Automation</h3>
-            <p>Smart workflows & business automation systems.</p>
+            <p>
+              Smart frameworks engineered to handle intricate business rules and
+              eliminate boring manual clicks.
+            </p>
           </div>
 
           <div class="card" data-type="dev">
             <h3>Software Development</h3>
-            <p>Python tools, systems, and applications.</p>
+            <p>
+              High-caliber, custom structural scripts tailored to accelerate
+              server computing processes.
+            </p>
           </div>
 
           <div class="card" data-type="infra">
             <h3>IT Infrastructure</h3>
-            <p>Servers, networks, monitoring systems.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about">
-        <h2 class="section-title">About Me</h2>
-
-        <div class="about">
-          <div>
             <p>
-              Senior IT Engineer specializing in automation, infrastructure, and
-              AI-powered solutions. I build systems that eliminate repetitive
-              work and improve business efficiency.
+              Designing heavily monitored, structurally stable local
+              environments and network frameworks.
             </p>
           </div>
-
-          <div class="headshot"></div>
         </div>
       </section>
 
-      <!-- CONTACT -->
-      <section id="contact">
+      <section id="about" class="reveal">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-layout">
+          <p>
+            I architect digital ecosystems that drive extreme engineering
+            efficiency. With active hands-on capabilities across
+            <span class="about-highlight"
+              >Infrastructure Systems, Python Automation, and Large Language
+              Model integrations</span
+            >, my focus centers heavily on eliminating structural redundancy and
+            turning complex logic into beautiful technical execution.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="reveal">
         <h2 class="section-title">Contact</h2>
-        <p>Email: your@email.com</p>
-        <p>GitHub: github.com/yourusername</p>
+        <div class="contact-box">
+          <p>Let's build something advanced together.</p>
+          <p>Email: <a href="mailto:your@email.com">your@email.com</a></p>
+          <p>
+            GitHub:
+            <a href="https://github.com/yourusername" target="_blank"
+              >github.com/yourusername</a
+            >
+          </p>
+        </div>
       </section>
     </main>
 
-    <footer>© 2026 Creative Portfolio — Built with Dark UI System</footer>
+    <footer>© 2026 Jansen Mark Baril — Built with Dark UI System</footer>
 
     <script>
-      // CURSOR TRAIL
+      // CURSOR TRAIL (May dynamic lagging trail para mas makinis tingnan)
       const cursor = document.getElementById('cursor')
+      let mouseX = 0,
+        mouseY = 0
+      let cursorX = 0,
+        cursorY = 0
+
       document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px'
-        cursor.style.top = e.clientY + 'px'
+        mouseX = e.clientX
+        mouseY = e.clientY
       })
+
+      function animateCursor() {
+        let distX = mouseX - cursorX
+        let distY = mouseY - cursorY
+
+        cursorX = cursorX + distX * 0.2
+        cursorY = cursorY + distY * 0.2
+
+        cursor.style.left = cursorX + 'px'
+        cursor.style.top = cursorY + 'px'
+
+        requestAnimationFrame(animateCursor)
+      }
+      animateCursor()
 
       // FILTER SYSTEM
       const buttons = document.querySelectorAll('.filter-btn')
-      const cards = document.querySelectorAll('.card')
+      const cards = document.querySelectorAll('#services .card')
 
       buttons.forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -331,40 +572,54 @@
           cards.forEach((card) => {
             if (filter === 'all' || card.dataset.type === filter) {
               card.style.display = 'block'
+              setTimeout(() => {
+                card.style.opacity = '1'
+              }, 10)
             } else {
+              card.style.opacity = '0'
               card.style.display = 'none'
             }
           })
         })
       })
 
-      // SCROLL ACTIVE NAV
+      // SCROLL ACTIVE NAV LINK
       const links = document.querySelectorAll('nav a')
+      const sections = document.querySelectorAll('header, section')
+
       window.addEventListener('scroll', () => {
-        let fromTop = window.scrollY
+        let current = ''
+        const fromTop = window.scrollY + 150
+
+        sections.forEach((section) => {
+          if (section.offsetTop <= fromTop) {
+            current = section.getAttribute('id')
+          }
+        })
+
         links.forEach((link) => {
-          let section = document.querySelector(link.getAttribute('href'))
-          if (section.offsetTop <= fromTop + 100) {
-            links.forEach((l) => l.classList.remove('active'))
+          link.classList.remove('active')
+          if (link.getAttribute('href') === `#${current}`) {
             link.classList.add('active')
           }
         })
       })
 
-      // FADE IN ANIMATION
+      // SMOOTH FADE IN ANIMATION (Intersection Observer)
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      }
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.style.opacity = 1
-            entry.target.style.transform = 'translateY(0)'
+            entry.target.classList.add('active')
           }
         })
-      })
+      }, observerOptions)
 
-      document.querySelectorAll('.card, section').forEach((el) => {
-        el.style.opacity = 0
-        el.style.transform = 'translateY(20px)'
-        el.style.transition = '0.6s'
+      document.querySelectorAll('.reveal').forEach((el) => {
         observer.observe(el)
       })
     </script>
